@@ -2,8 +2,9 @@ package com.fpf.homecollector.book_microservice.domain.service;
 
 import com.fpf.homecollector.book_microservice.domain.Book;
 import com.fpf.homecollector.book_microservice.domain.BookNote;
-import com.fpf.homecollector.book_microservice.domain.BookRepository;
+import com.fpf.homecollector.book_microservice.domain.repository.BookRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 public class BookServiceImpl implements BookService {
@@ -12,6 +13,16 @@ public class BookServiceImpl implements BookService {
 
     public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
+    }
+
+    @Override
+    public Book findBook(UUID bookId) {
+        return getBook(bookId);
+    }
+
+    @Override
+    public List<Book> findBooks() {
+        return bookRepository.findAll();
     }
 
     @Override

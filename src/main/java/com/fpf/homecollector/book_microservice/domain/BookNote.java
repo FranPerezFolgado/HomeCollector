@@ -13,8 +13,8 @@ public class BookNote {
     private final int page;
     private final String quote;
 
-    public BookNote(UUID id, String note, int page, String quote) {
-        this.id = id;
+    public BookNote(String note, int page, String quote) {
+        this.id = UUID.randomUUID();
         this.note = note;
         this.page = page;
         this.quote = quote;

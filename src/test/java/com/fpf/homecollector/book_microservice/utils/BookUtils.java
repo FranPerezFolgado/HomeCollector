@@ -4,7 +4,6 @@ import com.fpf.homecollector.book_microservice.domain.Book;
 import com.fpf.homecollector.book_microservice.domain.BookNote;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 public class BookUtils {
 
@@ -14,7 +13,7 @@ public class BookUtils {
     }
 
     public static BookNote createNote() {
-        return new BookNote(UUID.randomUUID(), "testNote", 1, "testQuote");
+        return new BookNote("testNote", 1, "testQuote");
     }
 
     public static Book createBookWithOneNote() {

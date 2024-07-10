@@ -2,7 +2,7 @@ package com.fpf.homecollector.book_microservice.domain.service;
 
 import com.fpf.homecollector.book_microservice.domain.Book;
 import com.fpf.homecollector.book_microservice.domain.BookNote;
-import com.fpf.homecollector.book_microservice.domain.BookRepository;
+import com.fpf.homecollector.book_microservice.domain.repository.BookRepository;
 import com.fpf.homecollector.book_microservice.utils.BookUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
