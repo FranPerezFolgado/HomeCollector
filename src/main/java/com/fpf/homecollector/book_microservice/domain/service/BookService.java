@@ -8,13 +8,15 @@ import java.util.UUID;
 
 public interface BookService {
 
-    Book findBook(UUID bookId);
+    UUID saveBook(final Book book);
+
+    Book findBook(final UUID bookId);
 
     List<Book> findBooks();
 
-    UUID saveBook(Book book);
+    List<Book> findBooksByAuthor(final String author);
 
-    void addNote(UUID bookUuid, BookNote note);
+    void addNote(final UUID bookUuid, final BookNote note);
 
-    void deleteNote(UUID bookUuid, UUID noteUuid);
+    void deleteNote(final UUID bookUuid, final UUID noteUuid);
 }

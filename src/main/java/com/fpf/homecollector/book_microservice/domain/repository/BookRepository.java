@@ -8,10 +8,12 @@ import java.util.UUID;
 
 public interface BookRepository {
 
-    Optional<Book> findById(UUID id);
+    void save(Book book);
 
     List<Book> findAll();
 
-    void save(Book book);
+    Optional<Book> findById(UUID id);
 
+    List<Book> findByAuthor(String author);
+    
 }

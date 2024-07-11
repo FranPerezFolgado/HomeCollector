@@ -19,6 +19,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public UUID saveBook(Book book) {
+        bookRepository.save(book);
+        return book.getId();
+    }
+
+    @Override
     public Book findBook(UUID bookId) {
         return getBook(bookId);
     }
@@ -29,9 +35,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public UUID saveBook(Book book) {
-        bookRepository.save(book);
-        return book.getId();
+    public List<Book> findBooksByAuthor(String author) {
+        return bookRepository.findByAuthor(author);
     }
 
     @Override

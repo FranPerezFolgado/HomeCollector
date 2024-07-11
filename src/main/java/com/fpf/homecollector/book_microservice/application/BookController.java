@@ -23,17 +23,23 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/{bookId}")
-    public FindBookResponse findBook(@PathVariable("bookId") UUID bookId) {
-        return BookMapperUtils.mapFindBook(bookService.findBook(bookId));
-    }
-
     //TODO
     //PAGINATION
     @GetMapping
     public List<FindBookResponse> findBooks() {
         return BookMapperUtils.mapFindBooks(bookService.findBooks());
     }
+
+    @GetMapping("/author")
+    public List<FindBookResponse> findBooksByAuthor(@RequestParam("author") String author) {
+        return BookMapperUtils.mapFindBooks(bookService.findBooksByAuthor(author));
+    }
+
+    @GetMapping("/{bookId}")
+    public FindBookResponse findBook(@PathVariable("bookId") UUID bookId) {
+        return BookMapperUtils.mapFindBook(bookService.findBook(bookId));
+    }
+
 
     @PostMapping
     public CreateBookResponse createBook(@RequestBody CreateBookRequest request) {

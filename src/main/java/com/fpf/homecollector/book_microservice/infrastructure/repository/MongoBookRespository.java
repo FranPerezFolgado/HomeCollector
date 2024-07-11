@@ -22,6 +22,11 @@ public class MongoBookRespository implements BookRepository {
     }
 
     @Override
+    public List<Book> findByAuthor(String author) {
+        return bookRepository.findByAuthor(author);
+    }
+
+    @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
