@@ -9,16 +9,21 @@ import java.util.UUID;
 
 @Getter
 public class Book {
-    private final UUID id;
-    private final String name;
-    private final String isbn;
-    private final String author;
-    private final BigDecimal price; //maybe to calculate total spent
-    private final List<BookNote> notes;
+
+    private String name;
+    private String isbn;
+    private String author;
+    private BigDecimal price; //maybe to calculate total spent
+    private List<BookNote> notes;
+    private UUID id;
     /*TODO
         - author document?
      */
 
+
+    public Book() {
+
+    }
 
     public Book(String name, String isbn, String author, BigDecimal price) {
         this.id = UUID.randomUUID();
@@ -28,6 +33,7 @@ public class Book {
         this.price = price;
         this.notes = new ArrayList<>();
     }
+
 
     public void addNote(BookNote note) {
         this.notes.add(note);

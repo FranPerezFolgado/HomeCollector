@@ -2,16 +2,17 @@ package com.fpf.homecollector.book_microservice.application.response;
 
 import com.fpf.homecollector.book_microservice.domain.Book;
 import com.fpf.homecollector.book_microservice.domain.BookNote;
+import lombok.experimental.UtilityClass;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@UtilityClass
 public class BookMapperUtils {
 
     public static List<FindBookResponse> mapFindBooks(List<Book> books) {
         return books.stream().map(
                         BookMapperUtils::mapFindBook)
-                .collect(Collectors.toList());
+                .toList();
 
     }
 
@@ -30,7 +31,7 @@ public class BookMapperUtils {
     public static List<FindBookNoteResponse> mapFindNotes(List<BookNote> notes) {
         return notes.stream().map(
                         BookMapperUtils::mapFindNote)
-                .collect(Collectors.toList());
+                .toList();
 
     }
 

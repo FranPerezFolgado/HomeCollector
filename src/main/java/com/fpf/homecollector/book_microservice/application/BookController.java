@@ -2,7 +2,6 @@ package com.fpf.homecollector.book_microservice.application;
 
 import com.fpf.homecollector.book_microservice.application.request.AddNoteRequest;
 import com.fpf.homecollector.book_microservice.application.request.CreateBookRequest;
-import com.fpf.homecollector.book_microservice.application.request.DeleteNoteRequest;
 import com.fpf.homecollector.book_microservice.application.response.BookMapperUtils;
 import com.fpf.homecollector.book_microservice.application.response.CreateBookResponse;
 import com.fpf.homecollector.book_microservice.application.response.FindBookResponse;
@@ -31,8 +30,8 @@ public class BookController {
 
     //TODO
     //PAGINATION
-    @GetMapping()
-    public List<FindBookResponse> findBooks(@PathVariable("bookId") UUID bookId) {
+    @GetMapping
+    public List<FindBookResponse> findBooks() {
         return BookMapperUtils.mapFindBooks(bookService.findBooks());
     }
 
@@ -43,16 +42,16 @@ public class BookController {
         return new CreateBookResponse(id);
     }
 
-    @PostMapping
-    public void addNote(@RequestBody AddNoteRequest request) {
-        bookService.addNote(request.bookId(), request.mapToEntity());
-        log.debug("Note added to book: {}", request.bookId());
+    @PostMapping("/{bookId}")
+    public void addNote(@PathVariable("bookId") UUID bookId, @RequestBody AddNoteRequest request) {
+        bookService.addNote(bookId, request.mapToEntity());
+        log.debug("Note added to book: {}", bookId);
     }
 
-    @DeleteMapping
-    public void addNote(@RequestBody DeleteNoteRequest request) {
-        bookService.deleteNote(request.bookId(), request.noteId());
-        log.debug("Note {} deleted from book: {}", request.noteId(), request.bookId());
+    @DeleteMapping("/{bookId}/{noteId}")
+    public void addNote(@PathVariable("bookId") UUID bookId, @PathVariable("noteId") UUID noteId) {
+        bookService.deleteNote(bookId, noteId);
+        log.debug("Note {} deleted from book: {}", noteId, bookId);
     }
 
 }
