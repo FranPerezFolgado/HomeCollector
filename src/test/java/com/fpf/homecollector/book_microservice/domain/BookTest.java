@@ -4,6 +4,7 @@ import com.fpf.homecollector.book_microservice.utils.BookUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class BookTest {
 
@@ -22,5 +23,14 @@ class BookTest {
         testBook.removeNote(testBook.getNotes().getFirst().getId());
 
         assertEquals(0, testBook.getNotes().size());
+    }
+
+    @Test
+    void setRating() {
+        Book testBook = BookUtils.createBook();
+        BookRating bookRating = BookUtils.createRating();
+        testBook.setRating(bookRating);
+
+        assertNotNull(testBook.getRating());
     }
 }

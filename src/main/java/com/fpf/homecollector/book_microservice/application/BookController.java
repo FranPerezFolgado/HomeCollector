@@ -1,6 +1,7 @@
 package com.fpf.homecollector.book_microservice.application;
 
 import com.fpf.homecollector.book_microservice.application.request.AddNoteRequest;
+import com.fpf.homecollector.book_microservice.application.request.AddRatingRequest;
 import com.fpf.homecollector.book_microservice.application.request.CreateBookRequest;
 import com.fpf.homecollector.book_microservice.application.response.BookMapperUtils;
 import com.fpf.homecollector.book_microservice.application.response.CreateBookResponse;
@@ -48,7 +49,7 @@ public class BookController {
         return new CreateBookResponse(id);
     }
 
-    @PostMapping("/{bookId}")
+    @PostMapping("/{bookId}/note")
     public void addNote(@PathVariable("bookId") UUID bookId, @RequestBody AddNoteRequest request) {
         bookService.addNote(bookId, request.mapToEntity());
         log.debug("Note added to book: {}", bookId);
@@ -59,5 +60,11 @@ public class BookController {
         bookService.deleteNote(bookId, noteId);
         log.debug("Note {} deleted from book: {}", noteId, bookId);
     }
+
+    @PostMapping("/{bookId}/rating")
+    public void addRating(@PathVariable("bookId") UUID bookId, @RequestBody AddRatingRequest request) {
+        bookService.addRating(bookId, request.mapToEntity());
+    }
+
 
 }

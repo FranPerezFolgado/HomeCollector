@@ -2,6 +2,7 @@ package com.fpf.homecollector.book_microservice.utils;
 
 import com.fpf.homecollector.book_microservice.domain.Book;
 import com.fpf.homecollector.book_microservice.domain.BookNote;
+import com.fpf.homecollector.book_microservice.domain.BookRating;
 
 import java.math.BigDecimal;
 
@@ -21,5 +22,9 @@ public class BookUtils {
         BookNote note = createNote();
         book.addNote(note);
         return book;
+    }
+
+    public static BookRating createRating() {
+        return new BookRating("review", 1);
     }
 }

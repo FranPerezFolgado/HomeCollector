@@ -2,6 +2,7 @@ package com.fpf.homecollector.book_microservice.domain.service;
 
 import com.fpf.homecollector.book_microservice.domain.Book;
 import com.fpf.homecollector.book_microservice.domain.BookNote;
+import com.fpf.homecollector.book_microservice.domain.BookRating;
 import com.fpf.homecollector.book_microservice.domain.repository.BookRepository;
 import com.fpf.homecollector.book_microservice.infrastructure.service.BookServiceImpl;
 import com.fpf.homecollector.book_microservice.utils.BookUtils;
@@ -43,7 +44,7 @@ class BookServiceImplTest {
         final Book book = BookUtils.createBook();
         final BookNote note = BookUtils.createNote();
 
-        doReturn(Optional.of(book)).when(bookRepository).findById(any(UUID.class));
+        mockFindBook(book);
         bookService.addNote(book.getId(), note);
 
         verify(bookRepository, times(1)).findById(any(UUID.class));
@@ -57,12 +58,28 @@ class BookServiceImplTest {
     void deleteNote() {
         final Book book = BookUtils.createBookWithOneNote();
 
-        doReturn(Optional.of(book)).when(bookRepository).findById(any(UUID.class));
+        mockFindBook(book);
         bookService.deleteNote(book.getId(), book.getNotes().getFirst().getId());
 
         verify(bookRepository, times(1)).findById(any(UUID.class));
         verify(bookRepository, times(1)).save(argThat(
                 bookToSave -> bookToSave.getNotes().isEmpty()
         ));
+    }
+
+
+    @Test
+    void addRating() {
+        Book book = BookUtils.createBook();
+        mockFindBook(book);
+        BookRating rating = BookUtils.createRating();
+        bookService.addRating(book.getId(), rating);
+
+        assertNotNull(book.getRating());
+
+    }
+
+    private void mockFindBook(Book book) {
+        doReturn(Optional.of(book)).when(bookRepository).findById(any(UUID.class));
     }
 }

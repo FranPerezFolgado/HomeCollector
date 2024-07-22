@@ -1,6 +1,7 @@
 package com.fpf.homecollector.book_microservice.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,7 +15,10 @@ public class Book {
     private String isbn;
     private String author;
     private BigDecimal price; //maybe to calculate total spent
-    private List<BookNote> notes;
+    private List<BookNote> notes = new ArrayList<>();
+    private boolean finished;
+    @Setter
+    private BookRating rating;
     private UUID id;
     /*TODO
         - author document?
@@ -25,13 +29,23 @@ public class Book {
 
     }
 
-    public Book(String name, String isbn, String author, BigDecimal price) {
+    public Book(String isbn, String name, String author, BigDecimal price) {
+        this.id = UUID.randomUUID();
+        this.isbn = isbn;
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.finished = false;
+    }
+
+    public Book(String name, String isbn, String author, BigDecimal price, boolean finished, BookRating rating) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.isbn = isbn;
         this.author = author;
         this.price = price;
-        this.notes = new ArrayList<>();
+        this.finished = finished;
+        this.rating = rating;
     }
 
 
@@ -44,5 +58,6 @@ public class Book {
                 .filter(note -> note.getId().equals(uuid))
                 .findFirst().ifPresent(this.notes::remove);
     }
+
 
 }

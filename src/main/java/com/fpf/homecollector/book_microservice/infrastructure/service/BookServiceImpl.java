@@ -2,6 +2,7 @@ package com.fpf.homecollector.book_microservice.infrastructure.service;
 
 import com.fpf.homecollector.book_microservice.domain.Book;
 import com.fpf.homecollector.book_microservice.domain.BookNote;
+import com.fpf.homecollector.book_microservice.domain.BookRating;
 import com.fpf.homecollector.book_microservice.domain.repository.BookRepository;
 import com.fpf.homecollector.book_microservice.domain.service.BookService;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,13 @@ public class BookServiceImpl implements BookService {
         Book book = getBook(bookUuid);
         book.removeNote(noteUuid);
         bookRepository.save(book);
+    }
+
+    @Override
+    public void addRating(UUID bookUuid, BookRating rating) {
+        Book book = getBook(bookUuid);
+        book.setRating(rating);
+
     }
 
     private Book getBook(UUID id) {

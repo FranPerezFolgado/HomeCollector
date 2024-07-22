@@ -2,6 +2,7 @@ package com.fpf.homecollector.book_microservice.domain.service;
 
 import com.fpf.homecollector.book_microservice.domain.Book;
 import com.fpf.homecollector.book_microservice.domain.BookNote;
+import com.fpf.homecollector.book_microservice.domain.BookRating;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,4 +20,6 @@ public interface BookService {
     void addNote(final UUID bookUuid, final BookNote note);
 
     void deleteNote(final UUID bookUuid, final UUID noteUuid);
+
+    void addRating(final UUID bookUuid, final BookRating rating);
 }
