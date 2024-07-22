@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -76,6 +77,16 @@ class BookServiceImplTest {
         bookService.addRating(book.getId(), rating);
 
         assertNotNull(book.getRating());
+
+    }
+
+    @Test
+    void deleteRating() {
+        Book book = BookUtils.createBookWithRating();
+        mockFindBook(book);
+        bookService.deleteRating(book.getId());
+
+        assertNull(book.getRating());
 
     }
 

@@ -66,5 +66,9 @@ public class BookController {
         bookService.addRating(bookId, request.mapToEntity());
     }
 
+    @DeleteMapping("/{bookId}/rating")
+    public void deleteRating(@PathVariable("bookId") UUID bookId) {
+        bookService.deleteRating(bookId);
+    }
 
 }

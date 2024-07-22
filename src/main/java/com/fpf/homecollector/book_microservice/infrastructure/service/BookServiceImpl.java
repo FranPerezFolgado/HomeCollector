@@ -61,6 +61,12 @@ public class BookServiceImpl implements BookService {
 
     }
 
+    @Override
+    public void deleteRating(UUID bookUuid) {
+        Book book = getBook(bookUuid);
+        book.removeRating();
+    }
+
     private Book getBook(UUID id) {
         return bookRepository
                 .findById(id)

@@ -24,6 +24,12 @@ public class BookUtils {
         return book;
     }
 
+    public static Book createBookWithRating() {
+        Book bookRated = new Book("testBook", "testisbn", "testAuthor", BigDecimal.ONE);
+        bookRated.setRating(createRating());
+        return bookRated;
+    }
+
     public static BookRating createRating() {
         return new BookRating("review", 1);
     }

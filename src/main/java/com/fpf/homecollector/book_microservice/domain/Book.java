@@ -60,4 +60,7 @@ public class Book {
     }
 
 
+    public void removeRating() {
+        this.rating = null;
+    }
 }

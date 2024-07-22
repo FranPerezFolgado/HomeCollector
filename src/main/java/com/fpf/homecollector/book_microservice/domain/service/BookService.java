@@ -22,4 +22,7 @@ public interface BookService {
     void deleteNote(final UUID bookUuid, final UUID noteUuid);
 
     void addRating(final UUID bookUuid, final BookRating rating);
+
+    void deleteRating(final UUID bookUuid);
+
 }
