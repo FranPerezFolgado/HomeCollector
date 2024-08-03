@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/books")
+@RequestMapping("/books/v1")
 @Slf4j
 public class BookController {
 
