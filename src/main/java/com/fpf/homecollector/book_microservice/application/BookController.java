@@ -8,6 +8,8 @@ import com.fpf.homecollector.book_microservice.application.response.CreateBookRe
 import com.fpf.homecollector.book_microservice.application.response.FindBookResponse;
 import com.fpf.homecollector.book_microservice.domain.service.BookService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,48 +29,53 @@ public class BookController {
     //TODO
     //PAGINATION
     @GetMapping
-    public List<FindBookResponse> findBooks() {
-        return BookMapperUtils.mapFindBooks(bookService.findBooks());
+    public ResponseEntity<List<FindBookResponse>> findBooks() {
+        return ResponseEntity.status(HttpStatus.OK).body(BookMapperUtils.mapFindBooks(bookService.findBooks()));
     }
 
     @GetMapping("/author")
-    public List<FindBookResponse> findBooksByAuthor(@RequestParam("author") String author) {
-        return BookMapperUtils.mapFindBooks(bookService.findBooksByAuthor(author));
+    public ResponseEntity<List<FindBookResponse>> findBooksByAuthor(@RequestParam("author") String author) {
+        return ResponseEntity.status(HttpStatus.OK).body(BookMapperUtils.mapFindBooks(bookService.findBooksByAuthor(author)));
     }
 
     @GetMapping("/{bookId}")
-    public FindBookResponse findBook(@PathVariable("bookId") UUID bookId) {
-        return BookMapperUtils.mapFindBook(bookService.findBook(bookId));
+    public ResponseEntity<FindBookResponse> findBook(@PathVariable("bookId") UUID bookId) {
+        return ResponseEntity.status(HttpStatus.OK).body(BookMapperUtils.mapFindBook(bookService.findBook(bookId)));
     }
 
 
     @PostMapping
-    public CreateBookResponse createBook(@RequestBody CreateBookRequest request) {
+    public ResponseEntity<CreateBookResponse> createBook(@RequestBody CreateBookRequest request) {
         UUID id = bookService.saveBook(request.mapToEntity());
         log.debug("Book created: {}", id);
-        return new CreateBookResponse(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new CreateBookResponse(id));
     }
 
     @PostMapping("/{bookId}/note")
-    public void addNote(@PathVariable("bookId") UUID bookId, @RequestBody AddNoteRequest request) {
+    public ResponseEntity<Void> addNote(@PathVariable("bookId") UUID bookId, @RequestBody AddNoteRequest request) {
         bookService.addNote(bookId, request.mapToEntity());
         log.debug("Note added to book: {}", bookId);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{bookId}/{noteId}")
-    public void addNote(@PathVariable("bookId") UUID bookId, @PathVariable("noteId") UUID noteId) {
+    public ResponseEntity<Void> addNote(@PathVariable("bookId") UUID bookId, @PathVariable("noteId") UUID noteId) {
         bookService.deleteNote(bookId, noteId);
         log.debug("Note {} deleted from book: {}", noteId, bookId);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+
     }
 
     @PostMapping("/{bookId}/rating")
-    public void addRating(@PathVariable("bookId") UUID bookId, @RequestBody AddRatingRequest request) {
+    public ResponseEntity<Void> addRating(@PathVariable("bookId") UUID bookId, @RequestBody AddRatingRequest request) {
         bookService.addRating(bookId, request.mapToEntity());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping("/{bookId}/rating")
-    public void deleteRating(@PathVariable("bookId") UUID bookId) {
+    public ResponseEntity<Void> deleteRating(@PathVariable("bookId") UUID bookId) {
         bookService.deleteRating(bookId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }
