@@ -15,11 +15,5 @@ public record SearchBookResponse(
 
     }
 
-    public SearchBookResponse(String title, String author, String publisher, String isbn, String imageLink) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.isbn = isbn;
-        this.imageLink = imageLink;
-    }
+
 }

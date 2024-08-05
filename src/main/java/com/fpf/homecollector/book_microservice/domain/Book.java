@@ -11,12 +11,12 @@ import java.util.UUID;
 @Getter
 public class Book {
 
+    private final List<BookNote> notes = new ArrayList<>();
     private UUID id;
     private String title;
     private String isbn;
     private String author;
     private BigDecimal price; //maybe to calculate total spent
-    private List<BookNote> notes = new ArrayList<>();
     private boolean finished;
     @Setter
     private BookRating rating;
