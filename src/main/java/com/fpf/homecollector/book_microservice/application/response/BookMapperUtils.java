@@ -19,7 +19,7 @@ public class BookMapperUtils {
     public static FindBookResponse mapFindBook(Book book) {
         return new FindBookResponse(
                 book.getId(),
-                book.getName(),
+                book.getTitle(),
                 book.getIsbn(),
                 book.getAuthor(),
                 book.getPrice(),

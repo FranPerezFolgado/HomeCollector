@@ -11,7 +11,7 @@ import java.util.UUID;
 @Getter
 public class Book {
 
-    private String name;
+    private String title;
     private String isbn;
     private String author;
     private BigDecimal price; //maybe to calculate total spent
@@ -29,18 +29,18 @@ public class Book {
 
     }
 
-    public Book(String isbn, String name, String author, BigDecimal price) {
+    public Book(String isbn, String title, String author, BigDecimal price) {
         this.id = UUID.randomUUID();
         this.isbn = isbn;
-        this.name = name;
+        this.title = title;
         this.author = author;
         this.price = price;
         this.finished = false;
     }
 
-    public Book(String name, String isbn, String author, BigDecimal price, boolean finished, BookRating rating) {
+    public Book(String title, String isbn, String author, BigDecimal price, boolean finished, BookRating rating) {
         this.id = UUID.randomUUID();
-        this.name = name;
+        this.title = title;
         this.isbn = isbn;
         this.author = author;
         this.price = price;
