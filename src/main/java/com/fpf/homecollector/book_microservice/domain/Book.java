@@ -11,6 +11,7 @@ import java.util.UUID;
 @Getter
 public class Book {
 
+    private UUID id;
     private String title;
     private String isbn;
     private String author;
@@ -19,7 +20,8 @@ public class Book {
     private boolean finished;
     @Setter
     private BookRating rating;
-    private UUID id;
+    private String publisher;
+    private String imageLink;
     /*TODO
         - author document?
      */
@@ -38,7 +40,9 @@ public class Book {
         this.finished = false;
     }
 
-    public Book(String title, String isbn, String author, BigDecimal price, boolean finished, BookRating rating) {
+    public Book(String title, String isbn, String author, BigDecimal price, boolean finished, BookRating rating, String publisher, String imageLink) {
+        this.publisher = publisher;
+        this.imageLink = imageLink;
         this.id = UUID.randomUUID();
         this.title = title;
         this.isbn = isbn;
