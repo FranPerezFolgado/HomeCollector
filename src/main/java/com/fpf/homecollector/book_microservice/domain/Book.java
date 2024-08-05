@@ -41,8 +41,6 @@ public class Book {
     }
 
     public Book(String title, String isbn, String author, BigDecimal price, boolean finished, BookRating rating, String publisher, String imageLink) {
-        this.publisher = publisher;
-        this.imageLink = imageLink;
         this.id = UUID.randomUUID();
         this.title = title;
         this.isbn = isbn;
@@ -50,6 +48,8 @@ public class Book {
         this.price = price;
         this.finished = finished;
         this.rating = rating;
+        this.publisher = publisher;
+        this.imageLink = imageLink;
     }
 
 
