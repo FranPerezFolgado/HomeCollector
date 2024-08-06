@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: book-microservice
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: books
+  #spring.data.mongodb.username=myusername
+  #spring.data.mongodb.password=mypassword
+books:
+  api:
+    key: ${GOOGLE_API_KEY}

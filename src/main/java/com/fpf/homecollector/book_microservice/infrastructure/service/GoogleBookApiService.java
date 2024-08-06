@@ -19,8 +19,8 @@ public class GoogleBookApiService implements ExternalBookService {
     private final static String API_URL = "https://www.googleapis.com/books/v1";//volumes?q=";
     private final WebClient webClient;
     private final ObjectMapper objectMapper;
-    
-    @Value("${google.api.key}")
+
+    @Value("${books.api.key}")
     private String API_KEY;
 
     public GoogleBookApiService() {
