@@ -1,10 +1,10 @@
 package com.fpf.homecollector.book_microservice.domain.service;
 
+import com.fpf.homecollector.book_microservice.application.service.BookServiceImpl;
 import com.fpf.homecollector.book_microservice.domain.Book;
 import com.fpf.homecollector.book_microservice.domain.BookNote;
 import com.fpf.homecollector.book_microservice.domain.BookRating;
 import com.fpf.homecollector.book_microservice.domain.repository.BookRepository;
-import com.fpf.homecollector.book_microservice.infrastructure.service.BookServiceImpl;
 import com.fpf.homecollector.book_microservice.utils.BookUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,11 +23,13 @@ class BookServiceImplTest {
 
     private BookRepository bookRepository;
     private BookServiceImpl bookService;
+    private ExternalBookService externalBookService;
 
     @BeforeEach
     void setup() {
         bookRepository = Mockito.mock(BookRepository.class);
-        bookService = new BookServiceImpl(bookRepository);
+        externalBookService = Mockito.mock(ExternalBookService.class);
+        bookService = new BookServiceImpl(bookRepository, externalBookService);
     }
 
     @Test

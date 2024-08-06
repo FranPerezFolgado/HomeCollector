@@ -34,3 +34,6 @@ build/
 
 ### mongo data ###
 /mongo_data/
+
+###ENV###
+*.env
