@@ -23,7 +23,7 @@ public class BookSearchService {
     public List<SearchBookResponse> searchBook(SearchBookRequest searchBookRequest) {
 
         String query = buildQuery(searchBookRequest);
-        List<Book> foundBooks = externalBookService.searchBook(query);
+        List<Book> foundBooks = externalBookService.searchBooks(query);
         return mapListToResponse(foundBooks);
 
     }

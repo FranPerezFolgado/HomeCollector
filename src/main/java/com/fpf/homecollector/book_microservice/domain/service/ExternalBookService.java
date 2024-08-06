@@ -8,5 +8,5 @@ import java.util.List;
 @Component
 public interface ExternalBookService {
 
-    List<Book> searchBook(String filter);
+    List<Book> searchBooks(String filter);
 }

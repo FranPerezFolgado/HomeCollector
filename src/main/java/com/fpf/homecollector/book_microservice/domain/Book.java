@@ -22,6 +22,7 @@ public class Book {
     private BookRating rating;
     private String publisher;
     private String imageLink;
+    private String externalId;
     /*TODO
         - author document?
      */
@@ -40,7 +41,8 @@ public class Book {
         this.finished = false;
     }
 
-    public Book(String title, String isbn, String author, BigDecimal price, boolean finished, BookRating rating, String publisher, String imageLink) {
+    public Book(String title, String isbn, String author, BigDecimal price, boolean finished, BookRating rating, String publisher, String imageLink, String externalId) {
+        this.externalId = externalId;
         this.id = UUID.randomUUID();
         this.title = title;
         this.isbn = isbn;

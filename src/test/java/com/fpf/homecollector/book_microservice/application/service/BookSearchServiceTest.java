@@ -36,7 +36,7 @@ class BookSearchServiceTest {
         SearchBookRequest request = new SearchBookRequest("title", "author", "publisher", "isbn");
         SearchBookResponse response = new SearchBookResponse("title", "author", "publisher", "isbn", "thumbnail");
         Book expectedBook = BookUtils.createBook();
-        doReturn(List.of(expectedBook)).when(externalBookService).searchBook("intitle:title+inauthor:author+inpublisher:publisher+isbn:isbn");
+        doReturn(List.of(expectedBook)).when(externalBookService).searchBooks("intitle:title+inauthor:author+inpublisher:publisher+isbn:isbn");
 
         // When
         List<SearchBookResponse> result = bookSearchService.searchBook(request);
