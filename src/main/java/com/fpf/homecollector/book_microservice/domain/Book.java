@@ -23,9 +23,6 @@ public class Book {
     private String publisher;
     private String imageLink;
     private String externalId;
-    /*TODO
-        - author document?
-     */
 
 
     public Book() {

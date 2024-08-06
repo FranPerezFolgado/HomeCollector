@@ -24,8 +24,6 @@ public class BookSearcherController {
         this.bookSearchService = bookSearchService;
     }
 
-    //TODO
-    //PAGINATION
     @GetMapping
     public ResponseEntity<List<SearchBookResponse>> findBooks(@RequestBody SearchBookRequest searchBookRequest) {
         return ResponseEntity.status(HttpStatus.OK).body(bookSearchService.searchBook(searchBookRequest));
