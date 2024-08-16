@@ -10,7 +10,7 @@ public class BookUtils {
 
 
     public static Book createBook() {
-        return new Book("testBook", "testisbn", "testAuthor", BigDecimal.ONE, false, createRating(), "testPublisher", "testImageLink");
+        return new Book("testBook", "testisbn", "testAuthor", BigDecimal.ONE, false, createRating(), "testPublisher", "testImageLink", "1");
     }
 
     public static BookNote createNote() {
